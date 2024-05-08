@@ -1,10 +1,15 @@
 # Preliminary genome assembly step to determine suitable k-mer size
 ## Contents
 [Description](##Description)
+
 [Installation](##Installation)
+
 [Usage](##Usage)
+
 [Example](##Example)
+
 [Testing](##Testing)
+
 [License](##License)
 
 ## Description
