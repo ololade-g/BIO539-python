@@ -87,7 +87,8 @@ def file_sequences(file_path, k):
         }
     
     return results
-
+results = file_sequences(file_path, 1)
+print(results)
      
 #QUESTION 3
 def smallest_unique_k(results):
@@ -100,48 +101,36 @@ def smallest_unique_k(results):
     Returns:
         int: The smallest k value or None if no such k exists.
     """
-    # Start with the smallest possible k, which is 2 as per the requirement
-    k = 2
-
-    # Determine the maximum possible k, which is the length of the longest sequence
-    max_k = max(len(seq) for seq in results.keys())
-
-    # Loop from k=2 up to the maximum possible k
-    while k <= max_k:
-        all_unique = True  # Assume all subsequences are unique for the current k
-        seen_subsequents = set()  # Track seen subsequents for uniqueness
-
+    # If results is empty, return None
+    if not results:
+        return None
+    
+    # Initialize k to 1
+    k = 1
+    
+    # Loop until all substrings have a unique subsequent substring
+    while True:
         # Check each sequence's substrings for uniqueness
-        for sequence, info in results.items():
-            subsequents_dict = info['subsequent_substrings']
-
-            for substr, subsequents in subsequents_dict.items():
-                # Only consider substrings of length k
-                if len(substr) == k:
-                    # There should be exactly one subsequent substring for each substring of length k
-                    if len(subsequents) != 1:
-                        all_unique = False
-                        break
-                    subsequent = next(iter(subsequents))
-                    # If the subsequent substring has already been seen, it's not unique
-                    if subsequent in seen_subsequents:
-                        all_unique = False
-                        break
-                    seen_subsequents.add(subsequent)
-
+        all_unique = True  # Assume all are unique for the current k
+        for sequence in results:
+            subsequents = results[sequence]['subsequent_substrings']
+            for substr, subsequent_set in subsequents.items():
+                if len(subsequent_set) != 1:
+                    all_unique = False
+                    break  # No need to check further if one is not unique
             if not all_unique:
                 break  # No need to check other sequences if one sequence fails
-
-        # If all subsequences are unique, return the current k
+        
+        # If all are unique, return the current k
         if all_unique:
             return k
-
-        # Increment k and repeat the process
+        
+        # Otherwise, increment k and re-process the file
         k += 1
-
+        results = file_sequences(file_path, k)
+    
     # If the loop exits without finding a unique k, return None
     return None
-
 
 # Print the lowest k size identified by the find_smallest_unique_k function
 if __name__ == "__main__":
