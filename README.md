@@ -8,7 +8,7 @@
 
 [Example](##Example)
 
-[Testing](##Testing)
+[Testing](##-Testing)
 
 [License](##License)
 
