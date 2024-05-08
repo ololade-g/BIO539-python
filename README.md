@@ -21,14 +21,19 @@ Execute python script_smallest_k.py to process the sequences and generate result
 ## Example
 Download the provided `example.txt` file containing DNA sequence reads to your local computer. To analyze these sequences and find valid substrings, follow these steps:
 Edit script_smallest_k.py to specify the correct file path to the `example.txt` file
-Run the script: `python script_smallest_k.py`
+Run the script: 
+```
+python script_smallest_k.py
+```
 The results will be the smallest size of k for which each substring has only one unique subsequent substring
 
 ## Testing
 The functions in the script_smallest_k.py script can be tested using pytest. A test script `test_script.py` was created to test if the functions in `script_smallest_k.py` are being implemented correctly.
 Navigate to the working directory, install pytest using pip and run the test: 
-```pip install pytest```
-```pytest [path to test_script.py]```
+```
+pip install pytest
+pytest [path to test_script.py]
+```
 
 ## License
 This project is licensed under the MIT License
