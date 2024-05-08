@@ -1,11 +1,11 @@
 # Preliminary genome assembly step to determine suitable k-mer size
 ## Contents
 [Description](##Description)
-Installation
-Usage
-Example
-Testing
-License
+[Installation](##Installation)
+[Usage](##Usage)
+[Example](##Example)
+[Testing](##Testing)
+[License](##License)
 
 ## Description
 This project entails the identification of substrings in genome reads, their possible substrings, and the subsequent substrings for each substring identified. It also identifies the smallest k size for which each substring of the sequence has only one unique subsequent substring.
