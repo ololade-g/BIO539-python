@@ -2,7 +2,7 @@
 ## Contents
 [Description](https://github.com/ololade-g/BIO539-python/blob/main/README.md#description)
 
-[Installation](https://github.com/ololade-g/BIO539-python/blob/main/README.md##Installation)
+[Installation](https://github.com/ololade-g/BIO539-python/blob/main/README.md#Installation)
 
 [Usage](##Usage)
 
