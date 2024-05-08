@@ -1,7 +1,12 @@
+#!/usr/bin/env python3
+
+file_path = "../../shared/439539/reads.fa"
+
 #QUESTION 1
 def find_substrings(sequence, k):
     """
-    Finds all substrings of length k in the given sequence and identifies the immediate subsequent substring for each.
+    Finds all substrings of length k in the given sequence that contain only A, C, G, and T,
+    and identifies the immediate subsequent substring for each.
 
     Args:
         sequence (str): The input sequence.
@@ -9,32 +14,51 @@ def find_substrings(sequence, k):
 
     Returns:
         tuple: A tuple containing:
-            - list: All substrings of size k.
+            - list: All substrings of size k that contain only A, C, G, and T.
             - dict: A dictionary where keys are substrings and values are sets of unique subsequent substrings.
     """
-    # This function finds all substrings of length k in the given sequence
-    all_substrings = [sequence[i:i+k] for i in range(len(sequence) - k + 1)]
+    # Define the valid characters
+    valid_chars = {'A', 'C', 'G', 'T'}
     
-    # This dictionary will hold the immediate subsequent substring for each substring
+    # Initialize the list of all valid substrings and the dictionary for subsequent substrings
+    all_substrings = []
     subsequent_substrings = {}
     
-    # Iterate over each substring
-    for index, substring in enumerate(all_substrings):
-        # Only consider the substring that directly follows the current one
-        next_index = index + 1
-        if next_index < len(sequence) - k + 1:
-            next_substring = sequence[next_index:next_index+k]
-            # Check if the next substring is already in the dictionary
-            if substring not in subsequent_substrings:
-                subsequent_substrings[substring] = set()
-            # Add the next substring to the set for the current substring
-            subsequent_substrings[substring].add(next_substring)
-    
+    # Initialize the index
+    i = 0
+    # Loop through the sequence until there are no more substrings of length k
+    while i <= len(sequence) - k:
+        # Extract the substring of length k
+        substring = sequence[i:i+k]
+        # Check if the substring contains only valid characters
+        if set(substring).issubset(valid_chars):
+            # If valid, add the substring to the list of all substrings
+            all_substrings.append(substring)
+            # Check if there is a subsequent substring to consider
+            if i < len(sequence) - k:
+                # Extract the subsequent substring
+                next_substring = sequence[i+1:i+k+1]
+                # Check if the subsequent substring is also valid
+                if set(next_substring).issubset(valid_chars):
+                    # If valid, add it to the set of subsequent substrings
+                    if substring not in subsequent_substrings:
+                        subsequent_substrings[substring] = set()
+                    subsequent_substrings[substring].add(next_substring)
+            # Move to the next character in the sequence
+            i += 1
+        else:
+            # If an invalid character is found, skip it
+            i += 1
+            # Continue skipping any subsequent invalid characters
+            while i < len(sequence) and sequence[i] not in valid_chars:
+                i += 1
+
+    # Return the list of all valid substrings and the dictionary of subsequent substrings
     return all_substrings, subsequent_substrings
 
 
 #QUESTION 2
-def process_file_sequences(file_path, k):
+def file_sequences(file_path, k):
     """
     Processes sequences from a file, finding all substrings and their subsequent substrings.
 
@@ -64,11 +88,9 @@ def process_file_sequences(file_path, k):
     
     return results
 
-if __name__ == "__main__":
-    file_path = "../../shared/439539/reads.fa"
      
 #QUESTION 3
-def find_smallest_unique_k(results):
+def smallest_unique_k(results):
     """
     Finds the smallest k for which there is only one possible unique subsequent substring for all substrings.
 
@@ -78,44 +100,54 @@ def find_smallest_unique_k(results):
     Returns:
         int: The smallest k value or None if no such k exists.
     """
-    # Initialize k to 1
-    k = 1
-    
-    # Flag to check if all substrings have a unique subsequent substring
-    all_unique = False
-    
-    # Loop until all substrings have a unique subsequent substring
-    while not all_unique:
-        all_unique = True  # Assume all are unique for the current k
-        
+    # Start with the smallest possible k, which is 2 as per the requirement
+    k = 2
+
+    # Determine the maximum possible k, which is the length of the longest sequence
+    max_k = max(len(seq) for seq in results.keys())
+
+    # Loop from k=2 up to the maximum possible k
+    while k <= max_k:
+        all_unique = True  # Assume all subsequences are unique for the current k
+        seen_subsequents = set()  # Track seen subsequents for uniqueness
+
         # Check each sequence's substrings for uniqueness
-        for sequence in results:
-            substrings_info = results[sequence]
-            for substr, subsequents in substrings_info['subsequent_substrings'].items():
-                if len(subsequents) != 1:
-                    all_unique = False
-                    break  # No need to check further if one is not unique
-            
+        for sequence, info in results.items():
+            subsequents_dict = info['subsequent_substrings']
+
+            for substr, subsequents in subsequents_dict.items():
+                # Only consider substrings of length k
+                if len(substr) == k:
+                    # There should be exactly one subsequent substring for each substring of length k
+                    if len(subsequents) != 1:
+                        all_unique = False
+                        break
+                    subsequent = next(iter(subsequents))
+                    # If the subsequent substring has already been seen, it's not unique
+                    if subsequent in seen_subsequents:
+                        all_unique = False
+                        break
+                    seen_subsequents.add(subsequent)
+
             if not all_unique:
                 break  # No need to check other sequences if one sequence fails
-        
-        # If not all are unique, increment k and repeat the process
-        if not all_unique:
-            k += 1
-            # Re-process the file with the new k value
-            results = process_file_sequences(file_path, k)
-        else:
-            # All substrings have a unique subsequent substring
+
+        # If all subsequences are unique, return the current k
+        if all_unique:
             return k
-    
+
+        # Increment k and repeat the process
+        k += 1
+
     # If the loop exits without finding a unique k, return None
     return None
 
-# Example usage:
-# Assuming 'file_path' is defined and accessible
-results = process_file_sequences(file_path, 1)
-smallest_k = find_smallest_unique_k(results)
-if smallest_k is not None:
+
+# Print the lowest k size identified by the find_smallest_unique_k function
+if __name__ == "__main__":
+  results = file_sequences(file_path, 1)
+  smallest_k = smallest_unique_k(results)
+  if smallest_k is not None:
     print(f"The smallest k size for which there is only one possible unique subsequent substring for all the substring is: {smallest_k}")
 else:
     print("No such k size exists where each substring has a unique subsequent substring.")
