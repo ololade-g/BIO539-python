@@ -4,13 +4,13 @@
 
 [Installation](https://github.com/ololade-g/BIO539-python/blob/main/README.md#Installation)
 
-[Usage](##Usage)
+[Usage](https://github.com/ololade-g/BIO539-python/blob/main/README.md#Usage)
 
-[Example](##Example)
+[Example](https://github.com/ololade-g/BIO539-python/blob/main/README.md#Example)
 
-[Testing](##Testing)
+[Testing](https://github.com/ololade-g/BIO539-python/blob/main/README.md#Testing)
 
-[License](##License)
+[License](https://github.com/ololade-g/BIO539-python/blob/main/README.md#License)
 
 ## Description
 This project entails the identification of substrings in genome reads, their possible substrings, and the subsequent substrings for each substring identified. It also identifies the smallest k size for which each substring of the sequence has only one unique subsequent substring.
