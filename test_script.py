@@ -205,4 +205,88 @@ def test_file_sequences_large_k(large_k_sequences_file):
     assert file_sequences(large_k_sequences_file, k) == expected_results
 
 
+# Test 6: File with sequences where the same substring appears multiple times in a row
+
+@pytest.fixture
+def overlapping_sequences_file(tmp_path):
+    file_path = tmp_path / 'overlapping_sequences_file.txt'
+    file_content = 'ACGACGACG'  # Sequences where the same substring appears multiple times in a row
+    # Create the file and write the content
+    file_path.write_text(file_content)
+    # Return the file path for the test to use
+    return str(file_path)
+
+def test_file_sequences_overlapping(overlapping_sequences_file):
+    k = 3
+    expected_results = {
+        'ACGACGACG': {
+            'all_substrings': ['ACG', 'CGA', 'GAC', 'ACG', 'CGA', 'GAC', 'ACG'],
+            'subsequent_substrings': {'ACG': {'CGA'}, 'CGA': {'GAC'}, 'GAC': {'ACG'}}
+        },
+    }
+    # Call the function with the file path and k
+    actual_results = file_sequences(overlapping_sequences_file, k)
+    # Assert that the actual results match the expected results
+    assert actual_results == expected_results
+
+
+
+#3) TESTS THE smallest_unique_k FUNCTION
+import pytest
+from script_smallest_k import smallest_unique_k
+
+
+#Test 1: Check if the function works with an empty sequence
+
+@pytest.fixture
+def empty_result():
+    # Returns a dictionary mimicking the output of file_sequences function
+    return {
+        '': {
+            'all_substrings': [],
+            'subsequent_substrings': {}
+        },
+    }
+
+def test_with_empty(empty_result):
+    # Asserts that the function returns None for an empty sequence
+    assert smallest_unique_k(empty_result) == None
+
+
+#Test 1: Check if the function works with a sample input
+
+@pytest.fixture
+def sample_results():
+    # Returns a dictionary mimicking the output of file_sequences function
+    return {
+        'AT': {
+            'all_substrings': ['ACG', 'CGG', 'CGT', 'GTA', 'TAC', 'ACT'],
+            'subsequent_substrings': {'ACG': {'AGG'}, 'CGG': {'CGT'}, 'CGT': {'GTA'}, 'GTA': {'TAC'}, 'TAC': {'ACT'}}
+        },
+    }
+    
+def test_with_sample(sample_results):
+    # Asserts that the smallest unique k is 3 for the provided sample
+    assert smallest_unique_k(sample_results) == 3
+    
+
+#Test 2 # Check if the function correctly identifies a unique k
+@pytest.fixture
+
+def unique_k_results():
+    # Returns a dictionary with unique subsequent substrings for each substring
+    return {
+        'ACGTACGT': {
+            'all_substrings': ['ACG', 'CGT', 'GTA', 'TAC', 'ACG', 'CGT'],
+            'subsequent_substrings': {'ACG': {'CGT'}, 'CGT': {'GTA'}, 'GTA': {'TAC'}, 'TAC': {'ACG'}}
+        },
+    }
+
+def test_with_unique_k(unique_k_results):
+    # Asserts that the smallest unique k is 3 for the provided unique k results
+    assert smallest_unique_k(unique_k_results) == 3
+
+
+
+
 
