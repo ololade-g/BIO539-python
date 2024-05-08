@@ -4,9 +4,9 @@
 This project entails the identification of substrings in genome reads, their possible substrings, and the subsequent substrings for each substring identified. It also identifies the smallest k size for which each substring of the sequence has only one unique subsequent substring.
 
 The provided Python script, `script_smallest_k.py`, serves three main purposes:
-`find_substrings` Function: This function defines a method `find_substrings(sequence, k)` that takes an input DNA sequence and a desired substring length k. It identifies all valid substrings of length k containing only the characters A, C, G, and T. Additionally, it determines the immediate subsequent substring for each valid substring.
-`file_sequences` Function: This function processes DNA sequences from an input file. It reads the sequences, applies the `find_substrings` function, and stores the results in a dictionary. Each sequence is associated with its valid substrings and their subsequent substrings.
-`smallest_unique_k` Function: This function finds the smallest k for which there is only one possible unique subsequent substring for all substrings. It iterates through increasing k values until this condition is met or returns None if no such k exists.
+* `find_substrings` Function: This function defines a method `find_substrings(sequence, k)` that takes an input DNA sequence and a desired substring length k. It identifies all valid substrings of length k containing only the characters A, C, G, and T. Additionally, it determines the immediate subsequent substring for each valid substring.
+* `file_sequences` Function: This function processes DNA sequences from an input file. It reads the sequences, applies the `find_substrings` function, and stores the results in a dictionary. Each sequence is associated with its valid substrings and their subsequent substrings.
+* `smallest_unique_k` Function: This function finds the smallest k for which there is only one possible unique subsequent substring for all substrings. It iterates through increasing k values until this condition is met or returns None if no such k exists.
 
 ## Installation
 Installation of python3.0 or higher is required to reproduce this work
