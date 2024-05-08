@@ -1,6 +1,6 @@
 # Preliminary genome assembly step to determine suitable k-mer size
 ## Contents
-[Description](#https://github.com/ololade-g/BIO539-python/blob/main/README.md#description)
+[Description](https://github.com/ololade-g/BIO539-python/blob/main/README.md#description)
 
 [Installation](##Installation)
 
