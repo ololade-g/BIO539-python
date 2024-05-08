@@ -1,4 +1,11 @@
 # Preliminary genome assembly step to determine suitable k-mer size
+## Contents
+[Description](## Description)
+Installation
+Usage
+Example
+Testing
+License
 
 ## Description
 This project entails the identification of substrings in genome reads, their possible substrings, and the subsequent substrings for each substring identified. It also identifies the smallest k size for which each substring of the sequence has only one unique subsequent substring.
@@ -12,7 +19,7 @@ The provided Python script, `script_smallest_k.py`, serves three main purposes:
 Installation of python3.0 or higher is required to reproduce this work
 
 ## Usage
-Clone this repository to your local machine.
+Clone this repository to your local computer.
 Ensure you have Python installed.
 Run the scripts as needed:
 Modify the input file path and desired substring length in `script_smallest_k.py`.
