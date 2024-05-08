@@ -27,8 +27,8 @@ The results will be the smallest size of k for which each substring has only one
 ## Testing
 The functions in the script_smallest_k.py script can be tested using pytest. A test script `test_script.py` was created to test if the functions in `script_smallest_k.py` are being implemented correctly.
 Navigate to the working directory, install pytest using pip and run the test: 
-``pip install pytest
-pytest [path to test_script.py]``
+```pip install pytest```
+```pytest [path to test_script.py]```
 
 ## License
 This project is licensed under the MIT License
