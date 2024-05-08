@@ -15,15 +15,18 @@ Installation of python3.0 or higher is required to reproduce this work
 Clone this repository to your local machine.
 Ensure you have Python installed.
 Run the scripts as needed:
-Modify the input file path and desired substring length in script_smallest_k.py.
-Execute python script_smallest_k.py to process the sequences and generate results.
+Modify the input file path and desired substring length in `script_smallest_k.py`.
+To process the sequences and generate results, execute:
+```
+python3 script_smallest_k.py
+```
 
 ## Example
 Download the provided `example.txt` file containing DNA sequence reads to your local computer. To analyze these sequences and find valid substrings, follow these steps:
 Edit script_smallest_k.py to specify the correct file path to the `example.txt` file
 Run the script: 
 ```
-python script_smallest_k.py
+python3 script_smallest_k.py
 ```
 The results will be the smallest size of k for which each substring has only one unique subsequent substring
 
