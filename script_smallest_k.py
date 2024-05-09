@@ -87,8 +87,6 @@ def file_sequences(file_path, k):
         }
     
     return results
-results = file_sequences(file_path, 1)
-print(results)
      
 #QUESTION 3
 def smallest_unique_k(results):
