@@ -230,6 +230,7 @@ def test_file_sequences_overlapping(overlapping_sequences_file):
 
 
 #3) TEST THE smallest_unique_k FUNCTION
+
 import pytest
 from script_smallest_k import smallest_unique_k
 
@@ -238,7 +239,7 @@ def test_empty_results():
     empty_results = {}
     assert smallest_unique_k(empty_results) is None
 
-# Test 2 Test with sample sesults
+# Test 2 Test with sample results
 def test_sample_results():
     sample_results = {
         'ATCG': {'subsequent_substrings': {'A': {'T'}, 'G': {'C'}, 'C': {'G'}}}
