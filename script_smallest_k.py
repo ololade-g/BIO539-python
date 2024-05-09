@@ -137,6 +137,6 @@ if __name__ == "__main__":
   results = file_sequences(file_path, 1)
   smallest_k = smallest_unique_k(results)
   if smallest_k is not None:
-    print(f"The smallest k size for which there is only one possible unique subsequent substring for all the substring is: {smallest_k}")
+    print(f"The smallest k size for which there is only one possible unique subsequent substring for all the substrings is: {smallest_k}")
 else:
     print("No such k size exists where each substring has a unique subsequent substring.")
