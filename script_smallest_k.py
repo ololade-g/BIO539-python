@@ -94,7 +94,7 @@ def smallest_unique_k(results):
     Finds the smallest k for which there is only one possible unique subsequent substring for all substrings.
 
     Args:
-        results (dict): The dictionary returned by process_file_sequences function.
+        results (dict): The dictionary returned by "file_sequences" function.
 
     Returns:
         int: The smallest k value or None if no such k exists.
