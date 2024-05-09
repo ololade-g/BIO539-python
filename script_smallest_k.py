@@ -130,11 +130,11 @@ def smallest_unique_k(results):
     # If the loop exits without finding a unique k, return None
     return None
 
-# Print the lowest k size identified by the find_smallest_unique_k function
+# Print the lowest k size identified by the smallest_unique_k function
 if __name__ == "__main__":
   results = file_sequences(file_path, 1)
   smallest_k = smallest_unique_k(results)
   if smallest_k is not None:
     print(f"The smallest k size for which there is only one possible unique subsequent substring for all the substrings is: {smallest_k}")
 else:
-    print("No such k size exists where each substring has a unique subsequent substring.")
+    print("No such k size exists where each substring has only one unique subsequent substring.")
